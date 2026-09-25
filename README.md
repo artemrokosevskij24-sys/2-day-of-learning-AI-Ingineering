@@ -1,38 +1,77 @@
-# Day 2 — Работа с LLM API напрямую
+AI Engineering & Python Learning Journey 🚀
 
-Первый выход за пределы no-code инструментов: обращение к модели Gemini собственным кодом на Python, без визуальных нод n8n.
+A complete log of my practical transition from basic Python programming and file handling to building AI applications using the Google Gemini API, vector embeddings, and local vector databases (ChromaDB).
 
-## Файлы
+📂 Repository Structure & Daily Progress
 
-| Файл | Тема |
-|---|---|
-| `first_api_call.py` | Первый прямой вызов Gemini API, безопасная работа с ключом через `.env` |
-| `chat_with_gemini.py` | Интерактивный запрос через `input()`, системный промпт |
-| `chat_with_gemini2.py` | Цикл `while`, многораундовый диалог с сохранением памяти через `chat.send_message()` |
+Day 1 — Python Fundamentals, Files & JSON
 
-## Что освоено
+Hello.py — First introductory script stepping into programming.
 
-- Безопасное хранение API-ключей через `.env` и `python-dotenv` — ключ никогда не пишется прямо в коде
-- Библиотека `google-genai` — авторизация клиента, отправка запроса, обработка ответа модели
-- Системные инструкции (`system_instruction`) — аналог `systemMessage` из n8n-агентов, но настраиваемый кодом
-- Цикл `while True` с выходом по условию (`break`) — превращение одноразового запроса в диалог
-- Механика "памяти" в чат-ботах: модель ничего не помнит сама по себе — `chat.send_message()` под капотом пересылает всю историю переписки заново с каждым новым сообщением
+variables.py — Working with data types, strings, and formatted text (f-strings).
 
-## Реальные баги по пути
+condition.py — Conditional logic (if-elif-else) for decision making.
 
-- Сломанный `pip` в системе — восстановлен через `python -m ensurepip --upgrade`
-- Устаревшая библиотека `google-generativeai` — переход на актуальную `google-genai`
-- Несохранённый `.env` файл — код не видел правки, пока файл не был сохранён на диск (`Ctrl+S`)
-- Путаница между одиночным запросом (`contents=...`) и диалогом с памятью (`client.chats.create()` + `chat.send_message()`)
+loops.py — Iterating through lists and working with structured data dictionaries.
 
-## Стек
+students_file.py — Writing and reading raw text files (.txt).
 
-- Python 3.14
-- `google-genai` — официальный SDK для Gemini API
-- `python-dotenv` — работа с переменными окружения
+json_practice.py — Structured data serialization and deserialization using Python's built-in json module.
 
-## Как запустить
+Project Day 1.py — Mini-project combining loops, condition checks, status filtering, and JSON report generation.
 
-1. Установить зависимости: `pip install google-genai python-dotenv`
-2. Создать файл `.env` рядом со скриптами с содержимым `GEMINI_API_KEY=твой_ключ`
-3. Запустить: `python chat_with_gemini2.py`
+Day 2 — Direct LLM API Integration
+
+Stepping out of no-code tools and writing custom Python scripts to interact directly with large language models:
+
+first_api_call.py — First direct connection to the Gemini API, ensuring secure key management via .env.
+
+chat_with_gemini.py — Interactive text generation using user input (input()) and configured system instructions (system_instruction).
+
+chat_with_gemini2.py — Multi-round dialogue loop (while True) maintaining chat history and context memory via chat.send_message().
+
+Day 4 — Embeddings & Vector Search (ChromaDB)
+
+first_embedding.py — Generating multi-dimensional vector embeddings using Gemini and computing semantic proximity manually via Cosine Similarity (numpy).
+
+chroma_test.py — Setting up a local vector database (ChromaDB), configuring a custom Gemini embedding function, adding multi-topic documents, and executing vector search queries (collection.query()).
+
+🧠 Key Learnings & Takeaways
+
+Secure Secrets Management: Using python-dotenv and .env files to keep API keys safe and out of source control.
+
+The google-genai SDK: Authenticating clients, generating text content, and embedding strings for semantic analysis.
+
+Stateless vs. Stateful Chat: Understanding that LLMs are stateless by default; multi-round chat relies on libraries resending full conversation history behind the scenes.
+
+Vector Representations: Converting natural language into numeric vectors to capture deep semantic meaning rather than relying on exact keyword matches.
+
+Vector Databases: Leveraging ChromaDB for local vector storage, indexing, and fast similarity lookups.
+
+🛠️ Tech Stack
+
+Python 3.14
+
+google-genai — Official Google SDK for Gemini models
+
+chromadb — Local vector database for semantic search
+
+numpy — Numerical computations for cosine similarity
+
+python-dotenv — Environment variable loader
+
+⚙️ How to Run
+
+Install required dependencies:
+
+pip install google-genai chromadb numpy python-dotenv
+
+
+Create a .env file in the project root folder:
+
+GEMINI_API_KEY="your_actual_api_key_here"
+
+
+Run any script:
+
+python chroma_test.py
